@@ -1,12 +1,12 @@
 :root {
-      --primary: #2b6cb0;
-      --bg: #f5f7fb;
-      --card: #ffffff;
+      --primary: rgb(196, 212, 186);
+      --bg: #dde6d4;
+      --card: #ffefef;
       --text: #1f2937;
       --muted: #6b7280;
-      --accent: #10b981;
-      --lime: #84cc16;
-      --green-light: #dcfce7;
+      --accent: #bbeedd;
+      --lime: #e7facb;
+      --green-light: #e9f5ed;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }

@@ -57,21 +57,27 @@ const btnEmail = document.getElementById('emailBtn');
 btnDownloadPdf.addEventListener('click', async () => {
   const diplomaElement = document.getElementById('diploma');
   if (!diplomaElement) return alert('Ошибка: не найден элемент с id="diploma"');
-
+  
   try {
     // Преобразуем HTML-блок в canvas (картинку)
+    // scale: 2 улучшает четкость изображения
     const canvas = await html2canvas(diplomaElement, { scale: 2, useCORS: true });
     const imgData = canvas.toDataURL('image/png');
-
+    
     // Инициализируем jsPDF
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
     
+    // --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
+    // Первый аргумент 'l' означает landscape (альбомная ориентация)
+    // 'p' - это portrait (книжная)
+    const pdf = new jsPDF('l', 'mm', 'a4'); 
+
     // Размеры страницы A4 в мм
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
 
     // Вставляем изображение на всю страницу и сохраняем
+    // Изображение растянется на весь альбомный лист
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save('Диплом.pdf');
   } catch (err) {
